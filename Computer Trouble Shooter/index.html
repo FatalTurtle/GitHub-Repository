@@ -43,10 +43,10 @@
             <!-- Second row -->
          	<tr>
           	<td colspan="3">
-			<img src    = "ComputerTroubles.jpg"
+			<img src    = "1v1.jpg"
 			id          = "icon"
-			width       = "180"
-			height      = "180"
+			width       = "280"
+			height      = "210"
 			border      = "0">
 			</td>
 			</tr>
@@ -54,7 +54,7 @@
 			<!-- Third row -->
 			<tr>
           	<td colspan="3"  align="center">
-			<h3><label id = "question">Do you like America's pastime?</label></h3>
+			<h3><label id = "question">Is your computer having problems?</label></h3>
 			</td>
 
           	<td>
@@ -64,6 +64,10 @@
           	<td>
           	<input type="button" id="no" value="No" onclick = "processYN('no')">
           	</td>
+
+                <td>
+                <span id="buttonAppear"></span>
+                </td>
 			</tr>
 
           </table>
@@ -71,10 +75,10 @@
 
         <script>
             var questionNumber = 0;  // This variable keeps track of which question is being processed.
-        	var baseball=false;      // Assume that 'no' has been answered
-        	var nationalLeague=false;
-        	var redUniforms=false;
-        	var ohio=false;
+        	var problem=false;      // Assume that 'no' has been answered
+        	var harddrive=false;
+        	var ram=false;
+        	var files=false;
         	var MAX_QUESTIONS=4;
 
         	// This function process 'yes' and 'no' responses for the various questions
@@ -88,16 +92,16 @@
         			switch (questionNumber)
 	        		{
 	        			case 0:
-	        				baseball = true;
+	        				problem = true;
 	        				break;
 	        			case 1:
-	        				nationalLeague = true;
+	        				harddrive = true;
 	        				break;
 	        			case 2:
-	        				redUniforms = true;
+	        				ram = true;
 	        				break;
 	        			case 3:
-	        				ohio = true;
+	        				files = true;
 	        				break;
 	        			default:
 	        				break;
@@ -118,7 +122,7 @@
 
 		        if (questionNumber >= 1 && questionNumber <= MAX_QUESTIONS)
 		        {
-		            processBaseballQuestion();
+		            processComputerQuestion();
 		        }
 		        else // Invalid Question Number
 		        {
@@ -131,22 +135,20 @@
 	         * This function processes the response to the 'baseball' question and
 	         * then navigates through the reamining line of questioning.
 	         */
-	        function processBaseballQuestion()
+	        function processComputerQuestion()
 	        {
-	        	 // Does the user like baseball?
-
 		        if (questionNumber >= 1)
 		        {
-		            if (baseball) // Yes, they do.
+		            if (problem)
 		            {
-						document.getElementById("output").value += "Play Ball!\n";
-        				document.getElementById("icon").src = "mlb2Fit.gif";
-						processLeagueQuestion();
+						document.getElementById("output").value += "You've come to the right place!\n";
+        				document.getElementById("icon").src = "ComputerTroubles.jpg";
+						processHardDriveQuestion();
 		            }
-		            else // Well, maybe they like cricket.
+		            else
 		            {
-		               document.getElementById("output").value += "Been to India lately?\n";
-        			   document.getElementById("icon").src = "cricketFit.gif";
+		               document.getElementById("output").value += "Go play a game\n";
+        			   document.getElementById("icon").src = "loloutplay.gif";
         			   disableApp();
 		            }
 		        }
@@ -156,22 +158,22 @@
 	         * This function processes the response to the 'league' question and
 	         * then navigates through the reamining line of questioning.
 	         */
-	        function processLeagueQuestion()
+	        function processHardDriveQuestion()
 	        {
-	        	document.getElementById("question").innerText = "Do you prefer the National League?";
+	        	document.getElementById("question").innerText = "Can you detect your hard drives?";
 
 	        	if (questionNumber >= 2)
 		        {
-		            if (nationalLeague)
+		            if (harddrive)
 		            {
-		            	document.getElementById("output").value += "Welcome to the Majors!\n";
-        				document.getElementById("icon").src = "NLFit.gif";
-		                processRedUniformQuestion();
+		            	document.getElementById("output").value += "The plot thickens\n";
+        				document.getElementById("icon").src = "plot.jpg";
+		                processRamQuestion();
 		            }
 		            else
 		            {
-		            	document.getElementById("output").value += "Must be an Orioles fan.\n";
-        				document.getElementById("icon").src = "oriolesFit.gif";
+		            	document.getElementById("output").value += "Have you tried unpluging the HD then replugging it?\n";
+        				document.getElementById("icon").src = "ITbear.png";
 		                disableApp();
 		            }
 		        }
@@ -181,13 +183,22 @@
 	         * This function processes the response to the 'uniform' question and
 	         * then navigates through the reamining line of questioning.
 	         */
-	        function processRedUniformQuestion()
+	        function processRamQuestion()
 	        {
-	        	document.getElementById("question").innerText = "Do you like red uniforms?";
-
-	        	// Continue with the line of questioning.
-	        	//
-
+	        	document.getElementById("question").innerText = "Is all of your Ram being detected?";
+                        if(questionNumber >= 3)
+                        {
+                                if(ram)
+                                {
+                                        document.getElementById("output").value += "we're getting closer\n";
+                                                document.getElementById("icon").src = "";
+                                }
+                                else
+                                {
+                                        document.getElementById("output").value += "Take it to a Proffesional\n";
+                                                document.getElementById("icon").src = "";
+                                }
+                        }
 	        }
 
 			// This function disables the user input.
@@ -195,8 +206,19 @@
 			{
 				document.getElementById("yes").disabled = true;
 				document.getElementById("no").disabled = true;
+                                buttonFunction();
 			}
 
+                        function buttonFunction()
+                        {
+                                document.getElementById("buttonAppear").innerHTML = '<input type="button" id="Restart" onclick = "process restartfunctio()"';
+                                var forceGet = true
+                        }
+
+                        function restartfunction()
+                        {
+                                location.reload(forceGet);
+                        }
         </script>
 
     </body>
