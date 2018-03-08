@@ -87,7 +87,7 @@
         		// Use this to print debugging diagnostics.
         		//document.getElementById("output").value = "DEBUG: " + answer;
 
-        		if (answer == "yes")
+        		if (answer == yes)
         		{
         			switch (questionNumber)
 	        		{
@@ -141,9 +141,9 @@
 		        {
 		            if (problem)
 		            {
-						document.getElementById("output").value += "You've come to the right place!\n";
+				document.getElementById("output").value += "You've come to the right place!\n";
         				document.getElementById("icon").src = "ComputerTroubles.jpg";
-						processHardDriveQuestion();
+					processHardDriveQuestion();
 		            }
 		            else
 		            {
@@ -167,14 +167,12 @@
 		            if (harddrive)
 		            {
 		            	document.getElementById("output").value += "The plot thickens\n";
-        				document.getElementById("icon").src = "plot.jpg";
-		                processRamQuestion();
+        			     document.getElementById("icon").src = "plot.jpg";
+		                      processRamQuestion();
 		            }
 		            else
 		            {
-		            	document.getElementById("output").value += "Have you tried unpluging the HD then replugging it?\n";
-        				document.getElementById("icon").src = "ITbear.png";
-		                disableApp();
+                                processFilesQuestion()
 		            }
 		        }
 	        }
@@ -191,34 +189,54 @@
                                 if(ram)
                                 {
                                         document.getElementById("output").value += "we're getting closer\n";
-                                                document.getElementById("icon").src = "";
+                                                document.getElementById("icon").src = "catposter.jpg";
                                 }
                                 else
                                 {
                                         document.getElementById("output").value += "Take it to a Proffesional\n";
+                                                document.getElementById("icon").src = "ats.jpg";
+                                        disableApp();
+                                }
+                        }
+	        }
+
+                function processFilesQuestion()
+	        {
+	        	document.getElementById("question").innerText = "Are some files corrupted?";
+                        if(questionNumber >= 3)
+                        {
+                                if(files)
+                                {
+                                        document.getElementById("output").value += "What did you do to your computer??\n";
                                                 document.getElementById("icon").src = "";
+                                }
+                                else
+                                {
+                                        document.getElementById("output").value += "Have you tried unpluging the HD then replugging it?\n";
+                				document.getElementById("icon").src = "ITbear.png";
+        		                disableApp();
                                 }
                         }
 	        }
 
 			// This function disables the user input.
-			function disableApp()
-			{
-				document.getElementById("yes").disabled = true;
-				document.getElementById("no").disabled = true;
-                                buttonFunction();
-			}
+		function disableApp()
+		{
+			document.getElementById("yes").disabled = true;
+			document.getElementById("no").disabled = true;
+                        buttonFunction();
+		}
 
-                        function buttonFunction()
-                        {
-                                document.getElementById("buttonAppear").innerHTML = '<input type="button" id="Restart" onclick = "process restartfunctio()"';
-                                var forceGet = true
-                        }
+                function buttonFunction()
+                {
+                        document.getElementById("buttonAppear").innerHTML = <input type="button" id="Restart" onclick = "process restartfunctio()";
+                        var forceGet = true
+                }
 
-                        function restartfunction()
-                        {
-                                location.reload(forceGet);
-                        }
+                function restartfunction()
+                {
+                        location.reload(forceGet);
+                }
         </script>
 
     </body>
