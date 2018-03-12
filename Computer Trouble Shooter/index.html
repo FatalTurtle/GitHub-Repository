@@ -66,7 +66,11 @@
           	</td>
 
                 <td>
-                <span id="buttonAppear"></span>
+                <input type="button" id="start" value="Start" onclick= "startFunction()">
+                </td>
+
+                <td>
+                <input type="button" id="restart" value="Restart" onclick= "restartFunction()">
                 </td>
 			</tr>
 
@@ -76,10 +80,11 @@
         <script>
             var questionNumber = 0;  // This variable keeps track of which question is being processed.
         	var problem=false;      // Assume that 'no' has been answered
-        	var harddrive=false;
+        	var hardDrive=false;
         	var ram=false;
         	var files=false;
         	var MAX_QUESTIONS=4;
+                disableApp()
 
         	// This function process 'yes' and 'no' responses for the various questions
         	function processYN(answer)
@@ -87,7 +92,7 @@
         		// Use this to print debugging diagnostics.
         		//document.getElementById("output").value = "DEBUG: " + answer;
 
-        		if (answer == yes)
+                        if (answer == "yes")
         		{
         			switch (questionNumber)
 	        		{
@@ -95,7 +100,7 @@
 	        				problem = true;
 	        				break;
 	        			case 1:
-	        				harddrive = true;
+	        				hardDrive = true;
 	        				break;
 	        			case 2:
 	        				ram = true;
@@ -111,6 +116,7 @@
         		questionNumber++;
         		processResponse();
         	}
+
 
         	// This function processes the 'yes' and 'no' responses and navigates the program logic flow.
         	function processResponse()
@@ -164,7 +170,7 @@
 
 	        	if (questionNumber >= 2)
 		        {
-		            if (harddrive)
+		            if (hardDrive)
 		            {
 		            	document.getElementById("output").value += "The plot thickens\n";
         			     document.getElementById("icon").src = "plot.jpg";
@@ -224,19 +230,19 @@
 		{
 			document.getElementById("yes").disabled = true;
 			document.getElementById("no").disabled = true;
-                        buttonFunction();
 		}
 
-                function buttonFunction()
+                function startFunction()
                 {
-                        document.getElementById("buttonAppear").innerHTML = <input type="button" id="Restart" onclick = "process restartfunctio()";
-                        var forceGet = true
+                        document.getElementById("yes").disabled = false;
+			document.getElementById("no").disabled = false;
                 }
 
-                function restartfunction()
+                function restartFunction()
                 {
-                        location.reload(forceGet);
+                        location.reload(true)
                 }
+
         </script>
 
     </body>
